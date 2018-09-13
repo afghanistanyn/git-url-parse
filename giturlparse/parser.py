@@ -43,8 +43,9 @@ class Parser(object):
             'protocols',
             'protocol',
             'href',
-            'resource',
+            'host',
             'user',
+            'passwd',
             'port',
             'name',
             'owner',
@@ -63,32 +64,33 @@ class Parser(object):
             'protocols': self._get_protocols(),
             'protocol': 'ssh',
             'href': self._url,
-            'resource': None,
+            'host': None,
             'user': None,
+            'passwd': None,
             'port': None,
             'name': None,
             'owner': None,
         }
         regexes = [
             (r'^(?P<protocol>https?|git|ssh|rsync)\://'
-             '(?:(?P<user>:<passwd>)@)*'
-             '(?P<resource>[a-z0-9_.-]*)'
+             '(?:(?P<user>.+):(?P<passwd>.+)@)*'
+             '(?P<host>[a-z0-9_.-]*)'
              '[:/]*'
              '(?P<port>[\d]+){0,1}'
              '(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
             (r'(git\+)?'
              '((?P<protocol>\w+)://)'
              '((?P<user>\w+)@)?'
-             '((?P<resource>[\w\.\-]+))'
+             '((?P<host>[\w\.\-]+))'
              '(:(?P<port>\d+))?'
              '(?P<pathname>(\/(?P<owner>\w+)/)?'
              '(\/?(?P<name>[\w\-]+)(\.git)?)?)'),
             (r'^(?:(?P<user>.+)@)*'
-             '(?P<resource>[a-z0-9_.-]*)[:/]*'
+             '(?P<host>[a-z0-9_.-]*)[:/]*'
              '(?P<port>[\d]+){0,1}'
              '[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)'),
             (r'((?P<user>\w+)@)?'
-             '((?P<resource>[\w\.\-]+))'
+             '((?P<host>[\w\.\-]+))'
              '[\:\/]{1,2}'
              '(?P<pathname>((?P<owner>\w+)/)?'
              '((?P<name>[\w\-]+)(\.git)?)?)'),
