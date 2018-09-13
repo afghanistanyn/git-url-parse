@@ -71,7 +71,7 @@ class Parser(object):
         }
         regexes = [
             (r'^(?P<protocol>https?|git|ssh|rsync)\://'
-             '(?:(?P<user>.+)@)*'
+             '(?:(?P<user>:<passwd>)@)*'
              '(?P<resource>[a-z0-9_.-]*)'
              '[:/]*'
              '(?P<port>[\d]+){0,1}'
