@@ -78,6 +78,12 @@ class Parser(object):
              '[:/]*'
              '(?P<port>[\d]+){0,1}'
              '(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
+              (r'^(?P<protocol>https?|git|ssh|rsync)\://'
+             '(?:(?P<user>.+)@)*'
+             '(?P<host>[a-z0-9_.-]*)'
+             '[:/]*'
+             '(?P<port>[\d]+){0,1}'
+             '(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
             (r'(git\+)?'
              '((?P<protocol>\w+)://)'
              '((?P<user>\w+)@)?'
